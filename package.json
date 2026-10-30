@@ -1,0 +1,21 @@
+{
+  "name": "nextpak-ai-dlc-demo",
+  "private": true,
+  "description": "A small todo app used to show the NextPak AI-DLC, commit by commit.",
+  "workspaces": [
+    "api",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently -n api,web -c blue,green \"npm run dev -w api\" \"npm run dev -w web\"",
+    "test": "npm run test --workspaces",
+    "typecheck": "npm run typecheck --workspaces",
+    "build": "npm run build --workspaces"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.6"
+  },
+  "engines": {
+    "node": ">=20.11"
+  }
+}
