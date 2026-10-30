@@ -13,10 +13,10 @@ export type StoredTodo = {
 const todos = new Map<string, StoredTodo>();
 
 export const todosRepository = {
-  list(offset: number, limit: number, filter?: { overdue?: boolean }) {
+  list(offset: number, limit: number, filter?: { overdue?: boolean; todayUTC?: string }) {
     let all = [...todos.values()];
     if (filter?.overdue !== undefined) {
-      const todayUTC = new Date().toISOString().slice(0, 10);
+      const todayUTC = filter.todayUTC ?? new Date().toISOString().slice(0, 10);
       all = all.filter((t) => {
         const overdue = isTodoOverdue(t, todayUTC);
         return filter.overdue ? overdue : !overdue;

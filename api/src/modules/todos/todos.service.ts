@@ -21,7 +21,7 @@ function getStored(id: string): StoredTodo {
 export const todosService = {
   list({ page, limit, overdue }: ListTodosInput) {
     const todayUTC = new Date().toISOString().slice(0, 10);
-    const { items, total } = todosRepository.list((page - 1) * limit, limit, { overdue });
+    const { items, total } = todosRepository.list((page - 1) * limit, limit, { overdue, todayUTC });
     return { items: items.map((t) => toTodo(t, todayUTC)), meta: { page, limit, total } };
   },
 
