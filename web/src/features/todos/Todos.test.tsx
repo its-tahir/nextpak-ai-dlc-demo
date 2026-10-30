@@ -5,10 +5,12 @@ import { vi } from 'vitest';
 import { App } from '../../App';
 import type { Todo } from './api';
 
-const todo = (title: string, completed = false): Todo => ({
+const todo = (title: string, completed = false, dueDate: string | null = null, overdue = false): Todo => ({
   id: crypto.randomUUID(),
   title,
   completed,
+  dueDate,
+  overdue,
   createdAt: '2026-10-30T10:00:00.000Z',
   updatedAt: '2026-10-30T10:00:00.000Z',
 });
@@ -17,8 +19,15 @@ const todo = (title: string, completed = false): Todo => ({
 function mockApi(todos: Todo[]) {
   const fetchMock = vi.fn(async (url: string, init?: RequestInit) => {
     const json = (status: number, body?: unknown) => new Response(body === undefined ? null : JSON.stringify(body), { status });
-    if (!init?.method || init.method === 'GET') return json(200, { data: todos, meta: { page: 1, limit: 100, total: todos.length } });
-    if (init.method === 'POST') return json(201, { data: todo(JSON.parse(String(init.body)).title) });
+    if (!init?.method || init.method === 'GET') {
+      const isOverdueFilter = url.includes('overdue=true');
+      const items = isOverdueFilter ? todos.filter((t) => t.overdue) : todos;
+      return json(200, { data: items, meta: { page: 1, limit: 100, total: items.length } });
+    }
+    if (init.method === 'POST') {
+      const body = JSON.parse(String(init.body));
+      return json(201, { data: todo(body.title, false, body.dueDate ?? null, false) });
+    }
     if (init.method === 'PATCH') return json(200, { data: { ...todos[0], ...JSON.parse(String(init.body)) } });
     return json(204);
   });
@@ -69,4 +78,55 @@ it('ticks a todo', async () => {
   renderApp();
   await userEvent.click(await screen.findByLabelText('Buy milk'));
   expect(fetchMock).toHaveBeenCalledWith(expect.stringMatching(/\/api\/v1\/todos\/.+/), expect.objectContaining({ method: 'PATCH', body: JSON.stringify({ completed: true }) }));
+});
+
+it("shows each todo's due date and marks overdue todos with the word Overdue", async () => {
+  mockApi([
+    todo('Future task', false, '2026-12-31', false),
+    todo('Late task', false, '2020-01-01', true),
+  ]);
+  renderApp();
+  expect(await screen.findByText(/2026-12-31/)).toBeInTheDocument();
+  expect(screen.getByText(/2020-01-01/)).toBeInTheDocument();
+  expect(screen.getByText('Overdue')).toBeInTheDocument();
+});
+
+it('adds a todo with an optional due date', async () => {
+  const fetchMock = mockApi([]);
+  renderApp();
+  await userEvent.type(await screen.findByLabelText('New todo'), 'Submit taxes');
+  await userEvent.type(screen.getByLabelText('Due date'), '2026-11-15');
+  await userEvent.click(screen.getByRole('button', { name: 'Add' }));
+  expect(fetchMock).toHaveBeenCalledWith(
+    '/api/v1/todos',
+    expect.objectContaining({
+      method: 'POST',
+      body: JSON.stringify({ title: 'Submit taxes', dueDate: '2026-11-15' }),
+    }),
+  );
+});
+
+it('filters the list when Show overdue only toggle is clicked', async () => {
+  const fetchMock = mockApi([
+    todo('Future task', false, '2026-12-31', false),
+    todo('Late task', false, '2020-01-01', true),
+  ]);
+  renderApp();
+  expect(await screen.findByLabelText('Future task')).toBeInTheDocument();
+  expect(screen.getByLabelText('Late task')).toBeInTheDocument();
+
+  const toggle = screen.getByLabelText('Show overdue only');
+  expect(toggle).not.toBeChecked();
+
+  await userEvent.click(toggle);
+  expect(toggle).toBeChecked();
+
+  expect(fetchMock).toHaveBeenCalledWith(
+    expect.stringContaining('overdue=true'),
+    expect.anything(),
+  );
+
+  // Assert DOM updates: overdue items remain, non-overdue items are removed
+  expect(await screen.findByLabelText('Late task')).toBeInTheDocument();
+  expect(screen.queryByLabelText('Future task')).not.toBeInTheDocument();
 });
