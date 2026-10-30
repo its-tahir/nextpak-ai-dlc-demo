@@ -11,7 +11,7 @@ step does; developers can open the details below it.
 | Step | What happens | Who | Page |
 |---|---|---|---|
 | 00 | The starting point: a normal small project, before any AI setup | Lead | [00 Starting point](walkthrough/00-starting-point.md) |
-| 01 | One command sets the project up for the team's AI tools | Lead | next |
+| 01 | One command sets the project up for the team's AI tools | Lead | [01 One-command setup](walkthrough/01-setup.md) |
 | 02 | The agent checks the project is AI-ready, and asks two questions | Lead + agent | next |
 | 03 | A new developer joins: clone, install, one check | Developer | next |
 | 04 | Sprint planning: two cards on the board | Lead | next |

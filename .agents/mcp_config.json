@@ -1,0 +1,29 @@
+{
+  "mcpServers": {
+    "next-sprint": {
+      "serverUrl": "https://nextsprint.nextpak.org/api/mcp",
+      "disabledTools": [
+        "delete_task",
+        "delete_comment",
+        "delete_checklist",
+        "delete_checklist_item",
+        "delete_list",
+        "delete_task_attachment",
+        "remove_board_member"
+      ]
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--isolated"
+      ]
+    },
+    "context7": {
+      "serverUrl": "https://mcp.context7.com/mcp"
+    },
+    "sentry": {
+      "serverUrl": "https://mcp.sentry.dev/mcp"
+    }
+  }
+}

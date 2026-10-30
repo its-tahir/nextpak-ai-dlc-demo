@@ -1,0 +1,30 @@
+# BEGIN nextpak-mcp (managed by tools/mcp.mjs)
+# NextSprint: Read and update your cards: move, checklist, comments, PR link
+[mcp_servers.next-sprint]
+url = "https://nextsprint.nextpak.org/api/mcp"
+disabled_tools = ["delete_task", "delete_comment", "delete_checklist", "delete_checklist_item", "delete_list", "delete_task_attachment", "remove_board_member"]
+startup_timeout_sec = 30
+
+# Playwright: Drive a real browser: user journeys, forms, screenshots, console errors
+[mcp_servers.playwright]
+command = "npx"
+args = ["@playwright/mcp@latest", "--isolated"]
+startup_timeout_sec = 30
+
+# Context7: Current docs and examples for any library before writing code against it
+[mcp_servers.context7]
+url = "https://mcp.context7.com/mcp"
+startup_timeout_sec = 30
+
+# GitHub: Read PRs, issues, Actions logs and code across repos (read-only)
+[mcp_servers.github]
+url = "https://api.githubcopilot.com/mcp/"
+bearer_token_env_var = "GITHUB_PAT"
+http_headers = { "X-MCP-Readonly" = "true", "X-MCP-Toolsets" = "context,repos,issues,pull_requests,actions" }
+startup_timeout_sec = 30
+
+# Sentry: Production errors: stack traces, events, affected releases for a Sentry issue link
+[mcp_servers.sentry]
+url = "https://mcp.sentry.dev/mcp"
+startup_timeout_sec = 30
+# END nextpak-mcp
