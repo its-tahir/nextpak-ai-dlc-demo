@@ -3,3 +3,13 @@ dist/
 coverage/
 .env
 *.log
+
+# BEGIN nextpak-guardrails
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.pem
+*.key
+dbhub.toml
+# END nextpak-guardrails

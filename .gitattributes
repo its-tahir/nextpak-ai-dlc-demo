@@ -1,3 +1,13 @@
 * text=auto eol=lf
 *.gif binary
 *.png binary
+
+# BEGIN nextpak-guardrails
+.guardrails/** text eol=lf
+.nextpak/** text eol=lf
+.agents/** text eol=lf
+.claude/** text eol=lf
+.codex/** text eol=lf
+AGENTS.md text eol=lf
+CLAUDE.md text eol=lf
+# END nextpak-guardrails

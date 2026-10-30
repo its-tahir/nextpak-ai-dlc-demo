@@ -1,0 +1,12 @@
+# BEGIN nextpak-guardrails
+# Agent and guardrail config: reviewed by a lead
+/.guardrails/ @its-tahir
+/.nextpak/ @its-tahir
+/.claude/ @its-tahir
+/.codex/ @its-tahir
+/.agents/ @its-tahir
+/.mcp.json @its-tahir
+/AGENTS.md @its-tahir
+/CLAUDE.md @its-tahir
+/.github/workflows/ @its-tahir
+# END nextpak-guardrails

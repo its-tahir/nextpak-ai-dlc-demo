@@ -10,7 +10,9 @@
     "dev": "concurrently -n api,web -c blue,green \"npm run dev -w api\" \"npm run dev -w web\"",
     "test": "npm run test --workspaces",
     "typecheck": "npm run typecheck --workspaces",
-    "build": "npm run build --workspaces"
+    "build": "npm run build --workspaces",
+    "ai:setup": "node .nextpak/doctor.mjs",
+    "prepare": "node .nextpak/doctor.mjs --hooks-only"
   },
   "devDependencies": {
     "concurrently": "^10.0.6"

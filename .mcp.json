@@ -1,0 +1,32 @@
+{
+  "mcpServers": {
+    "next-sprint": {
+      "type": "http",
+      "url": "https://nextsprint.nextpak.org/api/mcp"
+    },
+    "playwright": {
+      "command": "npx",
+      "args": [
+        "@playwright/mcp@latest",
+        "--isolated"
+      ]
+    },
+    "context7": {
+      "type": "http",
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}",
+        "X-MCP-Readonly": "true",
+        "X-MCP-Toolsets": "context,repos,issues,pull_requests,actions"
+      }
+    },
+    "sentry": {
+      "type": "http",
+      "url": "https://mcp.sentry.dev/mcp"
+    }
+  }
+}

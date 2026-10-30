@@ -1,0 +1,63 @@
+{
+  "$comment": "Written by nextpak-skills (npx github:VIRGO96/nextpak-skills update). Choices only, never secrets.",
+  "source": "github:VIRGO96/nextpak-skills",
+  "version": "1.0.6",
+  "commit": null,
+  "updated": "2026-10-30",
+  "stacks": [
+    "node",
+    "react"
+  ],
+  "tools": [
+    "claude",
+    "antigravity",
+    "codex"
+  ],
+  "mcp": {
+    "selected": [
+      "core"
+    ],
+    "servers": [
+      "next-sprint",
+      "playwright",
+      "context7",
+      "github",
+      "sentry"
+    ],
+    "env": [
+      "GITHUB_PAT"
+    ],
+    "antigravityGlobal": [
+      "github"
+    ],
+    "antigravitySnippet": {
+      "github": {
+        "headers": {
+          "Authorization": "Bearer <GITHUB_PAT>",
+          "X-MCP-Readonly": "true",
+          "X-MCP-Toolsets": "context,repos,issues,pull_requests,actions"
+        },
+        "serverUrl": "https://api.githubcopilot.com/mcp/"
+      }
+    },
+    "requires": {
+      "playwright": "Node 18+"
+    }
+  },
+  "guardrails": true,
+  "lead": "its-tahir",
+  "skills": [
+    "ai-dlc",
+    "docs-keeper",
+    "nextsprint-workflow",
+    "pr-ready",
+    "prompt-engineering",
+    "release-checklist",
+    "review-pr",
+    "testing-qa",
+    "systematic-debugging",
+    "verification-before-completion",
+    "node-express-standards",
+    "react-next-standards"
+  ]
+}
