@@ -1,6 +1,20 @@
 # nextpak-ai-dlc-demo
 
-TODO(question): one or two sentences on what this product does and who uses it.
+A small todo app (Express 5 backend + React Vite frontend) used to demonstrate the NextPak AI-DLC lifecycle.
+
+## Commands
+
+- Run dev servers: `npm run dev` (API on http://localhost:3000, Web on http://localhost:5173)
+- Run tests: `npm test` (vitest in api and web workspaces)
+- Typecheck: `npm run typecheck`
+- Build: `npm run build`
+
+## Architecture & Domains
+
+- Single repo workspace: `api/` (Express API) and `web/` (React SPA).
+- Domain docs: [Todos domain](docs/domains/todos.md)
+- Decisions: [docs/decisions/](docs/decisions/)
+- Session records: [sessions/](sessions/)
 
 ## Team skills: load the matching skill BEFORE reading code or making changes
 
