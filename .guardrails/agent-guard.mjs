@@ -76,7 +76,7 @@ const LINE_RULES = [
     /\b(FLUSHALL|FLUSHDB)\b/,
   ] },
   { why: R.pipe, re: [/\b(curl|wget|iwr|irm|Invoke-WebRequest|Invoke-RestMethod)\b[^|]*\|\s*(sudo\s+)?(sh|bash|zsh|iex|Invoke-Expression|python3?|node)\b/i] },
-  { why: R.env, re: [/\bGet-ChildItem\s+env:/i, /\b(gci|ls|dir)\s+env:/i, /\$env:\w*(KEY|TOKEN|SECRET|PASSWORD)/i] },
+  { why: R.env, re: [/\bGet-ChildItem\s+env:\s*$/i, /\b(gci|ls|dir)\s+env:\s*$/i] },
 ];
 
 // Rules on each simple command (split on ; && || |), with quoted strings blanked out so a

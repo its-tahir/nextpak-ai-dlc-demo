@@ -3,7 +3,7 @@ name: nextsprint-workflow
 description: Use when a developer starts, works on, blocks, finishes or opens a PR for a NextSprint card, or asks to keep the sprint board updated - e.g. start card X, start working on this task, move it to in progress, move my card to doing, update the board, add a checklist from the acceptance criteria, I'm blocked on this, mark the card dev done, I found a bug so create a card. Keeps the card's list, assignee, checklist, comments and PR link accurate via the NextSprint MCP (list_board_lists, get_task, update_task, add_comment, add_checklist, update_checklist_item, add_task_link, create_task). Keywords - NextSprint, sprint board, card, ticket, task status, checklist, acceptance criteria, blocked, dev done. Not for board admin work (creating boards or lists, members, labels) or team-wide sprint reports.
 metadata:
   author: NextPak AI Team
-  version: 0.3.0
+  version: 0.3.1
 ---
 
 # NextSprint Workflow
@@ -35,7 +35,8 @@ without the prefix. Descriptions and comments are **HTML** (`<p>`, `<ul>`, `<li>
   card's board. See [references/stage-mapping.md](references/stage-mapping.md).
 - **Developers stop at dev-done.** Never move a card to a QA, tested, client or done list, and never
   set checklist items to `qa`, `approved` or `completed`, unless the developer says so for this card
-  (or the board has no QA stage and the developer confirms).
+  (or the board has no QA stage and the developer confirms). "Close out" or "wrap up" the card means
+  the docs close-out and a comment, not a move: ask "move it to <list> too?" and wait.
 - **Done list = complete checkbox.** A move to the done stage always sends `isComplete: true` in the
   same `update_task` call; a move out of it sends `isComplete: false`. Never one without the other (section 5).
 - **Use the current tools.** `update_task` for every card change (move = `status`, finish = `isComplete`).
