@@ -15,7 +15,7 @@ step does; developers can open the details below it.
 | 02 | The agent checks the project is AI-ready; the lead reads and corrects it | Lead + agent | [02 AI-ready](walkthrough/02-ai-ready.md) |
 | 03 | A new developer joins: clone, install, one check | Developer | [03 A developer joins](walkthrough/03-developer-joins.md) |
 | 04 | Sprint planning: two cards on the board | Lead | [04 Sprint planning](walkthrough/04-sprint-planning.md) |
-| 05 | A feature card, from plan to pull request, then review | Developer + agent | next |
+| 05 | A feature card, from plan to pull request, then review | Developer + agent | [05 Feature card](walkthrough/05-feature-card.md) |
 | 06 | A bug card: a failing test first, then the fix | Developer + agent | next |
 | 07 | A vague request: the agent asks before it changes code | Developer + agent | next |
 | 08 | Guardrails: risky actions are blocked, with the reason | Developer + agent | next |
