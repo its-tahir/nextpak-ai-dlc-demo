@@ -80,6 +80,13 @@ it('ticks a todo', async () => {
   expect(fetchMock).toHaveBeenCalledWith(expect.stringMatching(/\/api\/v1\/todos\/.+/), expect.objectContaining({ method: 'PATCH', body: JSON.stringify({ completed: true }) }));
 });
 
+it('unticks a completed todo', async () => {
+  const fetchMock = mockApi([todo('Buy milk', true)]);
+  renderApp();
+  await userEvent.click(await screen.findByLabelText('Buy milk'));
+  expect(fetchMock).toHaveBeenCalledWith(expect.stringMatching(/\/api\/v1\/todos\/.+/), expect.objectContaining({ method: 'PATCH', body: JSON.stringify({ completed: false }) }));
+});
+
 it("shows each todo's due date and marks overdue todos with the word Overdue", async () => {
   mockApi([
     todo('Future task', false, '2026-12-31', false),

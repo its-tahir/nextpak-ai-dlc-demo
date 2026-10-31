@@ -47,7 +47,7 @@ export const todosService = {
     const saved = todosRepository.save({
       ...todo,
       title: input.title ?? todo.title,
-      completed: input.completed || todo.completed,
+      completed: input.completed ?? todo.completed,
       dueDate: input.dueDate !== undefined ? input.dueDate : (todo.dueDate ?? null),
       updatedAt: new Date().toISOString(),
     });

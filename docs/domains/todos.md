@@ -44,4 +44,4 @@ Todos track a task's title, completion status, optional due date, and overdue in
 - `DELETE /api/v1/todos/:id` - Remove todo by UUID, returns 204
 
 ## Known issues / gotchas
-- Bug: In `api/src/modules/todos/todos.service.ts` (`update`), `completed: input.completed || todo.completed` prevents un-ticking / un-completing a todo. Setting `completed: false` evaluates to `false || true` (which stays `true`). A card will follow to fix this.
+- None currently.
