@@ -1,7 +1,7 @@
 ---
 status: accepted
 date: 2026-10-31
-deciders: Product and Engineering
+deciders: Tahir Nazir (lead and developer)
 ---
 
 # 0001. Overdue evaluation uses server date in UTC
@@ -27,3 +27,4 @@ Chosen: **Server-side evaluation using the server's current date in UTC**, becau
 ## More information
 - Feature Card: Add due dates to todos (PR #5)
 - Domain doc: [docs/domains/todos.md](../domains/todos.md)
+

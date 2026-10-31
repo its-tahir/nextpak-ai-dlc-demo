@@ -1,8 +1,12 @@
 # Step 09: close-out, decisions, handoff, and a lesson for next time
 
-**In one sentence:** after QA confirms the changes, the developer and agent close out the cards on
-the board, log an Architecture Decision Record (ADR) for why overdue uses server UTC, turn the
-lesson about vague acceptance criteria into a rule in `AGENTS.md`, and write a handoff note.
+**In one sentence:** after both pull requests are merged, the developer asks the agent to close out
+the cards: it logs an Architecture Decision Record (ADR) for why "Overdue" uses the server's date,
+turns the lesson about vague acceptance criteria into a rule in `AGENTS.md`, and writes a handoff
+note, all in one pull request.
+
+This page was written by the agent as part of the close-out and then corrected by the lead; the
+corrections are in section 1.
 
 **Who:** developer and agent (Antigravity).
 
@@ -10,7 +14,7 @@ lesson about vague acceptance criteria into a rule in `AGENTS.md`, and write a h
 
 ```mermaid
 flowchart TD
-    qa(["QA verified:<br/>feature (PR #5) & bug (PR #7)"]) --> board["1. NextSprint board<br/>Checklist items completed,<br/>cards moved to 'completed' (isComplete: true)"]
+    qa(["Both PRs merged:<br/>feature (PR #5) and bug (PR #7)"]) --> board["1. NextSprint board<br/>close-out comment on each card<br/>(the agent also moved them to completed:<br/>that was QA's job, see section 1)"]
     board --> adr["2. Log decision<br/>ADR-0001: server UTC for overdue<br/>Linked from domain doc"]
     board --> rule["3. Feedback loop rule<br/>AGENTS.md: acceptance criteria must<br/>state where they apply (UI, API, or both)"]
     board --> handoff["4. Session handoff<br/>sessions/2026-10-31-close-out-cards.md<br/>Done, pending, next steps, real test output"]
@@ -29,11 +33,18 @@ Do it on a branch, then push and open a PR.
 
 ## 1. Closing out the board cards
 
-Both cards were verified in QA:
-- **"Add due dates to todos"**: 6 checklist items marked `completed`, task moved to `completed` with `isComplete: true`, closeout comment posted.
-- **"Can't un-tick a completed todo"**: 5 checklist items marked `completed`, task moved to `completed` with `isComplete: true`, closeout comment posted.
+The agent posted a close-out comment on both cards. It also ticked every checklist item and
+moved both cards from QA testing to completed. **That was a mistake:** the team rule is that the
+agent stops at dev done, and QA (a person) ticks the checklist and moves a card on after testing.
+The agent read "close out the cards" as "finish them on the board".
 
-In NextSprint, the `completed` list and the `isComplete: true` flag must always go together.
+What we did: QA had already tried both changes (the browser checks in steps 05 and 06 plus the
+merged PRs), so the cards stay completed. The rule in the `nextsprint-workflow` skill now says that
+"close out" means the docs and a comment, and that moving a card past dev done needs an explicit
+yes ("move it to completed too?").
+
+The agent did one part right: a card in the completed list always has `isComplete: true` too,
+set in the same call.
 
 ## 2. ADR-0001: Overdue evaluation uses server UTC
 
@@ -71,6 +82,14 @@ Context is saved in [`sessions/2026-10-31-close-out-cards.md`](../sessions/2026-
 - Removed `.gitkeep` from `docs/decisions/` and `sessions/`
 - `README.md` and this walkthrough page
 
+The lead also corrected the ADR's "deciders" line: the agent had written "Product and
+Engineering"; the decision was the developer's, made in step 05.
+
+## Tokens
+
+One conversation. In the dry run with Claude Code the close-out took about 40 steps, 4.5 minutes
+and $1.25.
+
 <details>
 <summary>Details for developers</summary>
 
@@ -79,3 +98,4 @@ Context is saved in [`sessions/2026-10-31-close-out-cards.md`](../sessions/2026-
 - The rule format `<Do X / never Y> - because <reason> (review YYYY-MM-DD)` ensures rules stay actionable and reviewable over time.
 
 </details>
+
