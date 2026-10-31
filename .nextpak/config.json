@@ -1,9 +1,9 @@
 {
   "$comment": "Written by nextpak-skills (npx github:VIRGO96/nextpak-skills update). Choices only, never secrets.",
   "source": "github:VIRGO96/nextpak-skills",
-  "version": "1.0.6",
+  "version": "1.0.10",
   "commit": null,
-  "updated": "2026-10-30",
+  "updated": "2026-10-31",
   "stacks": [
     "node",
     "react"

@@ -3,7 +3,7 @@ name: pr-ready
 description: Use when a change is finished and about to go up for review - the user says open a PR, create a pull request, draft PR, ready for review, push my branch, send it for review, raise a merge request, is this ready to merge. Covers syncing with the target branch, scope check of the full diff, secrets and debug-code check script, fresh-context self-review, Conventional Commits, PR size and splitting, PR description, draft PRs, required CI checks and linking the PR to the board card. Works for any stack. Not for reviewing someone else's PR - use the review-pr skill for that.
 metadata:
   author: NextPak AI Team
-  version: 0.2.0
+  version: 0.2.1
 ---
 
 # PR Ready
@@ -176,12 +176,14 @@ Before you submit, reread the description against the final diff. It must match 
 ## 7. Open the PR, link the card, watch CI
 
 ```bash
-git push -u origin HEAD                       # after a rebase: git push --force-with-lease
+git push -u origin HEAD                       # rebased an already pushed branch? force-push is blocked: ask the developer
 gh pr create --draft --base develop --title "feat(orders): add CSV export" --body-file pr-body.md
 gh pr checks --watch                          # wait for the required CI checks
 gh pr ready                                   # draft -> ready for review once all green
 ```
 
+- Always write the description to a file and pass `--body-file`. An inline `--body "..."` breaks
+  in PowerShell (a backtick is its escape character, so `` `t `` becomes a tab) and in bash (`$VAR`).
 - Open as **draft** while CI runs or anything is unfinished; draft PRs can't be merged and don't
   ask code owners for review. Mark ready only when CI is green and the DoD below is ticked.
 - **Required checks:** branch protection can require named CI checks to pass and the branch to be up
@@ -214,7 +216,7 @@ gh pr ready                                   # draft -> ready for review once a
 - The diff touches files the ticket never mentions, or deletes a file
 - A whole file shows as changed but only a few lines were meant to change (formatter or line endings)
 - An existing endpoint now returns a different shape or status
-- `git push --force` (use `--force-with-lease`)
+- Any force-push (`--force`, `--force-with-lease`): blocked by the guardrails; ask the developer
 - PR over ~400 changed lines mixing a refactor with a feature
 - The self-review was done in the same conversation that wrote the code
 - Asking to skip or bypass a required CI check, or merging with checks still running
