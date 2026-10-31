@@ -16,6 +16,11 @@ A small todo app (Express 5 backend + React Vite frontend) used to demonstrate t
 - Decisions: [docs/decisions/](docs/decisions/)
 - Session records: [sessions/](sessions/)
 
+## Conventions (only what the code doesn't show)
+
+- Acceptance criteria must state where they apply (UI, API, or both) - because ambiguous phrasing like "created or edited" leads to building for only one layer (API only) while leaving the other unimplemented (review 2026-10-31).
+
+
 ## Team skills: load the matching skill BEFORE reading code or making changes
 
 Required: without this table, agents skip the stack, testing and debugging skills on coding
