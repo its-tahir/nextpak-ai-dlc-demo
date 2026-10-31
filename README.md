@@ -5,8 +5,20 @@ setting a project up, getting it AI-ready, picking up a card, fixing a bug, revi
 closing out. Every step is a commit (or a pull request) with a short page that explains it in
 plain language, with a picture.
 
-**Start here:** read the steps in order. Each page starts with one sentence that says what the
-step does; developers can open the details below it.
+![How the NextPak team works with AI agents: seven steps, guardrails underneath](walkthrough/assets/ai-dlc-flow.gif)
+
+## Start here
+
+| You have | Read |
+|---|---|
+| 5 minutes | [QUICKSTART.md](QUICKSTART.md): the seven steps, the prompts to copy, five rules |
+| 30 minutes, or you're new to AI agents | [GUIDE.md](GUIDE.md): what happened at each step and why, the words you'll see, what the agent got wrong and who caught it |
+| Time to see every step | The table below: each page has a picture, the exact prompts, and what changed |
+
+## The steps
+
+Each page starts with one sentence that says what the step does; developers can open the details
+below it.
 
 | Step | What happens | Who | Page |
 |---|---|---|---|
