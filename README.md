@@ -19,7 +19,7 @@ step does; developers can open the details below it.
 | 06 | A bug card: a failing test first, then the fix | Developer + agent | [06 Bug card](walkthrough/06-bug-card.md) |
 | 07 | A vague request: the agent asks before it changes code | Developer + agent | [07 Vague request](walkthrough/07-vague-request.md) |
 | 08 | Guardrails: risky actions are blocked, with the reason | Developer + agent | [08 Guardrails](walkthrough/08-guardrails.md) |
-| 09 | Close-out: decisions, handoff, and a lesson for next time | Developer + agent | next |
+| 09 | Close-out: decisions, handoff, and a lesson for next time | Developer + agent | [09 Close-out](walkthrough/09-close-out.md) |
 
 To see the code as it was at a step: `git checkout step-03` (and `git checkout main` to come back).
 

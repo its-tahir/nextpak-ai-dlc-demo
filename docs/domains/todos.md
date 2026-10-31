@@ -45,3 +45,7 @@ Todos track a task's title, completion status, optional due date, and overdue in
 
 ## Known issues / gotchas
 - None currently.
+
+## Related decisions
+- [ADR 0001: Overdue evaluation uses server date in UTC](../decisions/0001-overdue-uses-server-utc-date.md)
+
