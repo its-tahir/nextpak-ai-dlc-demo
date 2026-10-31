@@ -164,6 +164,14 @@ describe('PATCH /api/v1/todos/:id', () => {
     expect(res.body.data.completed).toBe(true);
   });
 
+  it('un-ticks a completed todo', async () => {
+    const { body } = await create('task');
+    await request(app).patch(`/api/v1/todos/${body.data.id}`).send({ completed: true });
+    const res = await request(app).patch(`/api/v1/todos/${body.data.id}`).send({ completed: false });
+    expect(res.status).toBe(200);
+    expect(res.body.data.completed).toBe(false);
+  });
+
   it('updates a todo due date and allows removing it with null', async () => {
     const { body } = await create('task');
     const updateRes = await request(app).patch(`/api/v1/todos/${body.data.id}`).send({ dueDate: '2026-12-01' });
